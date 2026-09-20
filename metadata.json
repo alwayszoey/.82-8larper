@@ -1,0 +1,6 @@
+{
+  "name": "toastersalt",
+  "description": "toastersalt's profile page featuring dark tactile card styling, background visual effects, audio player, and social presence links.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
