@@ -31,7 +31,7 @@ export function EnterScreen({ onEnter, isEntered }: EnterScreenProps) {
               [ CLICK ANYWHERE TO ENTER ]
             </p>
             <p className="mt-3 text-[11px] font-mono text-white/40 tracking-wider">
-              Tap anywhere to open profile & start soundtrack
+              Tap anywhere to open
             </p>
           </motion.div>
         </motion.div>
