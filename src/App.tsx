@@ -11,6 +11,8 @@ import { RainOverlay } from './components/RainOverlay';
 import { MusicPlayer } from './components/MusicPlayer';
 import { EnterScreen } from './components/EnterScreen';
 import { TiltingCard } from './components/TiltingCard';
+import { CertificateInfoCard } from './components/CertificateInfoCard';
+import { StockStatusCard } from './components/StockStatusCard';
 
 export default function App() {
   const [isEntered, setIsEntered] = useState(false);
@@ -225,7 +227,7 @@ export default function App() {
         className="relative z-10 w-full max-w-[340px] sm:max-w-[360px] my-auto"
       >
         {/* Interactive 3D Tilting Card Wrapper */}
-        <TiltingCard maxTilt={14}>
+        <TiltingCard maxTilt={6.5}>
           {/* Profile Card Body */}
           <div className="relative rounded-[26px] border border-white/[0.08] bg-[#111111]/85 p-4 pt-9 sm:p-4.5 sm:pt-9.5 shadow-[0_25px_60px_rgba(0,0,0,0.95),inset_0_1px_1px_rgba(255,255,255,0.09)] backdrop-blur-2xl">
             {/* Floating Avatar with Spring Animation */}
@@ -502,6 +504,12 @@ export default function App() {
           </div>
         </TiltingCard>
       </motion.main>
+
+      {/* 2nd Card: iOS Certificate Explainer & Isometric Showcase */}
+      {isEntered && <CertificateInfoCard />}
+
+      {/* 3rd Card: Stock Status (0 Slots / Restocking) */}
+      {isEntered && <StockStatusCard />}
     </div>
   );
 }

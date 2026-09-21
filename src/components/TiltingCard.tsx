@@ -1,4 +1,4 @@
-import React, { useRef, useState, useCallback } from 'react';
+import React, { useRef, useState, useCallback, useEffect } from 'react';
 import { motion, useMotionValue, useSpring, useTransform } from 'motion/react';
 
 interface TiltingCardProps {
@@ -7,9 +7,9 @@ interface TiltingCardProps {
   maxTilt?: number;
 }
 
-export function TiltingCard({ children, className = '', maxTilt = 16 }: TiltingCardProps) {
+export function TiltingCard({ children, className = '', maxTilt = 6.5 }: TiltingCardProps) {
   const cardRef = useRef<HTMLDivElement>(null);
-  const [isHovered, setIsHovered] = useState(false);
+  const [isInteracting, setIsInteracting] = useState(false);
 
   // Motion values for normalized cursor coordinates (-1 to 1)
   const mouseX = useMotionValue(0);
@@ -41,7 +41,23 @@ export function TiltingCard({ children, className = '', maxTilt = 16 }: TiltingC
 
     mouseX.set(xPct);
     mouseY.set(yPct);
-    setIsHovered(true);
+    setIsInteracting(true);
+  }, [mouseX, mouseY]);
+
+  // Reset tilt only when tapping or clicking outside the card
+  useEffect(() => {
+    const handleOutsideInteraction = (e: PointerEvent | MouseEvent | TouchEvent) => {
+      if (cardRef.current && !cardRef.current.contains(e.target as Node)) {
+        mouseX.set(0);
+        mouseY.set(0);
+        setIsInteracting(false);
+      }
+    };
+
+    window.addEventListener('pointerdown', handleOutsideInteraction);
+    return () => {
+      window.removeEventListener('pointerdown', handleOutsideInteraction);
+    };
   }, [mouseX, mouseY]);
 
   const handlePointerMove = (e: React.PointerEvent<HTMLDivElement>) => {
@@ -54,12 +70,6 @@ export function TiltingCard({ children, className = '', maxTilt = 16 }: TiltingC
     }
   };
 
-  const handleLeave = () => {
-    setIsHovered(false);
-    mouseX.set(0);
-    mouseY.set(0);
-  };
-
   return (
     <div
       style={{ perspective: 1200 }}
@@ -68,29 +78,27 @@ export function TiltingCard({ children, className = '', maxTilt = 16 }: TiltingC
       <motion.div
         ref={cardRef}
         onPointerMove={handlePointerMove}
-        onPointerEnter={() => setIsHovered(true)}
-        onPointerLeave={handleLeave}
+        onPointerDown={(e) => {
+          updateCoordinates(e.clientX, e.clientY);
+        }}
         onTouchStart={(e) => {
-          setIsHovered(true);
           if (e.touches.length > 0) {
             updateCoordinates(e.touches[0].clientX, e.touches[0].clientY);
           }
         }}
         onTouchMove={handleTouchMove}
-        onTouchEnd={handleLeave}
-        onTouchCancel={handleLeave}
         style={{
           rotateX,
           rotateY,
           transformStyle: 'preserve-3d',
         }}
-        whileTap={{ scale: 0.98 }}
+        whileTap={{ scale: 0.985 }}
         className={`relative w-full cursor-grab active:cursor-grabbing will-change-transform ${className}`}
       >
         {/* Dynamic 3D Glare effect */}
         <motion.div
-          className="pointer-events-none absolute inset-0 z-30 rounded-[32px] overflow-hidden transition-opacity duration-300"
-          style={{ opacity: isHovered ? 0.45 : 0 }}
+          className="pointer-events-none absolute inset-0 z-30 rounded-[28px] overflow-hidden transition-opacity duration-300"
+          style={{ opacity: isInteracting ? 0.35 : 0 }}
         >
           <motion.div
             className="absolute inset-0"
