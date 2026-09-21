@@ -162,7 +162,7 @@ export default function App() {
   };
 
   return (
-    <div className="relative min-h-screen w-full bg-black text-[#d8d8d8] flex flex-col items-center justify-center px-4 py-16 sm:px-8 sm:py-20 overflow-x-hidden selection:bg-white/20 selection:text-white">
+    <div className="relative min-h-screen w-full bg-black text-[#d8d8d8] flex flex-col items-center justify-center px-4 py-12 sm:px-8 sm:py-16 overflow-x-hidden selection:bg-white/20 selection:text-white">
       {/* Click Anywhere To Enter / Fade Out Transition */}
       <EnterScreen isEntered={isEntered} onEnter={handleEnter} />
 
@@ -189,7 +189,7 @@ export default function App() {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -20 }}
             transition={{ duration: 0.4 }}
-            className="fixed top-4 right-4 z-40 flex items-center gap-2"
+            className="fixed top-3.5 right-3.5 z-40 flex items-center gap-2"
           >
             <button
               type="button"
@@ -222,18 +222,18 @@ export default function App() {
           damping: 24,
           mass: 0.9,
         }}
-        className="relative z-10 w-full max-w-[465px]"
+        className="relative z-10 w-full max-w-[340px] sm:max-w-[360px] my-auto"
       >
         {/* Interactive 3D Tilting Card Wrapper */}
-        <TiltingCard maxTilt={15}>
+        <TiltingCard maxTilt={14}>
           {/* Profile Card Body */}
-          <div className="relative rounded-[32px] border border-white/[0.08] bg-[#111111]/85 p-6 pt-12 shadow-[0_25px_60px_rgba(0,0,0,0.95),inset_0_1px_1px_rgba(255,255,255,0.09)] backdrop-blur-2xl">
+          <div className="relative rounded-[26px] border border-white/[0.08] bg-[#111111]/85 p-4 pt-9 sm:p-4.5 sm:pt-9.5 shadow-[0_25px_60px_rgba(0,0,0,0.95),inset_0_1px_1px_rgba(255,255,255,0.09)] backdrop-blur-2xl">
             {/* Floating Avatar with Spring Animation */}
             <motion.div
               initial={{ scale: 0, opacity: 0 }}
               animate={isEntered ? { scale: 1, opacity: 1 } : { scale: 0, opacity: 0 }}
               transition={{ type: 'spring', stiffness: 300, damping: 20, delay: 0.15 }}
-              className="absolute -top-12 left-1/2 -translate-x-1/2"
+              className="absolute -top-9 left-1/2 -translate-x-1/2"
               style={{ transform: 'translateZ(30px)' }}
             >
               <div className="relative group cursor-pointer">
@@ -241,7 +241,7 @@ export default function App() {
                 <img
                   src={PROFILE_DATA.avatarUrl}
                   alt={PROFILE_DATA.username}
-                  className="relative h-24 w-24 rounded-full border-2 border-white/20 bg-[#161616] object-cover shadow-[0_8px_24px_rgba(0,0,0,0.85)] transition-transform duration-500 hover:scale-105"
+                  className="relative h-[72px] w-[72px] rounded-full border-2 border-white/20 bg-[#161616] object-cover shadow-[0_8px_24px_rgba(0,0,0,0.85)] transition-transform duration-500 hover:scale-105"
                   referrerPolicy="no-referrer"
                 />
               </div>
@@ -252,17 +252,14 @@ export default function App() {
               initial={{ opacity: 0, y: 10 }}
               animate={isEntered ? { opacity: 1, y: 0 } : { opacity: 0, y: 10 }}
               transition={{ duration: 0.5, delay: 0.2 }}
-              className="mt-3 flex flex-col items-center text-center"
+              className="mt-2.5 flex flex-col items-center text-center"
               style={{ transform: 'translateZ(20px)' }}
             >
-              {/* Username & UID */}
-              <div className="relative group flex items-center justify-center gap-1.5 cursor-default">
-                <h1 className="text-xl font-bold tracking-tight text-white transition-colors group-hover:text-white">
+              {/* Username */}
+              <div className="relative group flex items-center justify-center cursor-default">
+                <h1 className="text-lg font-bold tracking-tight text-white transition-colors group-hover:text-white">
                   {PROFILE_DATA.username}
                 </h1>
-                <span className="hidden sm:inline-flex rounded-md border border-white/10 bg-white/5 px-1.5 py-0.5 text-[10px] font-mono text-white/50">
-                  UID {PROFILE_DATA.uid}
-                </span>
               </div>
 
               {/* Badges: Dev icon, Crown icon, and Clover icon (Clean white, icon-only) */}
@@ -270,46 +267,45 @@ export default function App() {
                 initial={{ scale: 0.8, opacity: 0 }}
                 animate={isEntered ? { scale: 1, opacity: 1 } : { scale: 0.8, opacity: 0 }}
                 transition={{ delay: 0.3 }}
-                className="mt-2.5 flex items-center justify-center gap-2"
+                className="mt-2 flex items-center justify-center gap-1.5"
               >
                 {/* Dev Icon Badge */}
                 <div
                   id="badge-dev"
                   title="Developer"
-                  className="flex size-7 items-center justify-center rounded-full border border-white/20 bg-white/10 text-white shadow-[0_0_10px_rgba(255,255,255,0.1),inset_0_1px_1px_rgba(255,255,255,0.2)] backdrop-blur-md transition-transform hover:scale-110 cursor-default select-none"
+                  className="flex size-6 items-center justify-center rounded-full border border-white/20 bg-white/10 text-white shadow-[0_0_8px_rgba(255,255,255,0.1),inset_0_1px_1px_rgba(255,255,255,0.2)] backdrop-blur-md transition-transform hover:scale-110 cursor-default select-none"
                 >
-                  <Code2 className="size-3.5 text-white drop-shadow-[0_0_5px_rgba(255,255,255,0.7)]" />
+                  <Code2 className="size-3 text-white drop-shadow-[0_0_5px_rgba(255,255,255,0.7)]" />
                 </div>
 
                 {/* Crown Icon Badge */}
                 <div
                   id="badge-crown"
                   title="Crown"
-                  className="flex size-7 items-center justify-center rounded-full border border-white/20 bg-white/10 text-white shadow-[0_0_10px_rgba(255,255,255,0.1),inset_0_1px_1px_rgba(255,255,255,0.2)] backdrop-blur-md transition-transform hover:scale-110 cursor-default select-none"
+                  className="flex size-6 items-center justify-center rounded-full border border-white/20 bg-white/10 text-white shadow-[0_0_8px_rgba(255,255,255,0.1),inset_0_1px_1px_rgba(255,255,255,0.2)] backdrop-blur-md transition-transform hover:scale-110 cursor-default select-none"
                 >
-                  <Crown className="size-3.5 text-white drop-shadow-[0_0_5px_rgba(255,255,255,0.7)]" />
+                  <Crown className="size-3 text-white drop-shadow-[0_0_5px_rgba(255,255,255,0.7)]" />
                 </div>
 
                 {/* Clover Icon Badge */}
                 <div
                   id="badge-clover"
                   title="Clover"
-                  className="flex size-7 items-center justify-center rounded-full border border-white/20 bg-white/10 text-white shadow-[0_0_10px_rgba(255,255,255,0.1),inset_0_1px_1px_rgba(255,255,255,0.2)] backdrop-blur-md transition-transform hover:scale-110 cursor-default select-none"
+                  className="flex size-6 items-center justify-center rounded-full border border-white/20 bg-white/10 text-white shadow-[0_0_8px_rgba(255,255,255,0.1),inset_0_1px_1px_rgba(255,255,255,0.2)] backdrop-blur-md transition-transform hover:scale-110 cursor-default select-none"
                 >
-                  <Clover className="size-3.5 text-white drop-shadow-[0_0_5px_rgba(255,255,255,0.7)]" />
+                  <Clover className="size-3 text-white drop-shadow-[0_0_5px_rgba(255,255,255,0.7)]" />
                 </div>
               </motion.div>
 
-              {/* Bio with custom decorated (Closed) badge */}
-              <div className="mt-3 text-sm text-[#d8d8d8]/85 font-normal tracking-wide leading-relaxed">
-                <div className="text-white/60 font-mono tracking-widest text-xs mb-0.5">
+              {/* Bio without background on (Closed) */}
+              <div className="mt-2.5 text-xs sm:text-[13px] text-[#d8d8d8]/85 font-normal tracking-wide leading-relaxed">
+                <div className="text-white/60 font-mono tracking-widest text-[11px] mb-0.5">
                   ⊹ ࣪ ˖ ໒꒱
                 </div>
                 <div className="text-[#e4e4e7]">งาน frontend & backend, full-stack</div>
-                <div className="mt-1 flex items-center justify-center gap-1.5 flex-wrap">
+                <div className="mt-0.5 flex items-center justify-center gap-1.5 flex-wrap">
                   <span className="text-[#d8d8d8]/85">เริ่มต้น $1 DM kub</span>
-                  <span className="inline-flex items-center gap-1 rounded-md border border-zinc-700/60 bg-zinc-800/40 px-1.5 py-0.5 text-[10px] font-mono text-zinc-400 font-medium tracking-normal shadow-xs">
-                    <span className="size-1.5 rounded-full bg-zinc-500/80" />
+                  <span className="text-white/40 font-mono text-[11px]">
                     (Closed)
                   </span>
                 </div>
@@ -317,8 +313,8 @@ export default function App() {
 
               {/* Current Location */}
               {PROFILE_DATA.location && (
-                <div className="mt-3 flex items-center justify-center gap-1.5 text-xs text-white/50 font-mono tracking-wider">
-                  <MapPin className="size-3 text-white/60 animate-pulse" />
+                <div className="mt-2 flex items-center justify-center gap-1.5 text-[11px] text-white/50 font-mono tracking-wider">
+                  <MapPin className="size-2.5 text-white/60 animate-pulse" />
                   <span>{PROFILE_DATA.location}</span>
                 </div>
               )}
@@ -329,13 +325,13 @@ export default function App() {
               initial={{ opacity: 0, y: 15 }}
               animate={isEntered ? { opacity: 1, y: 0 } : { opacity: 0, y: 15 }}
               transition={{ duration: 0.5, delay: 0.35 }}
-              className="mt-6 space-y-3"
+              className="mt-4 space-y-2"
               style={{ transform: 'translateZ(15px)' }}
             >
               {/* 1. Discord Button */}
               <motion.div
-                whileHover={{ scale: 1.015, y: -2 }}
-                whileTap={{ scale: 0.985 }}
+                whileHover={{ scale: 1.012, y: -1 }}
+                whileTap={{ scale: 0.988 }}
                 transition={{ type: 'spring', stiffness: 400, damping: 25 }}
                 className="group relative"
               >
@@ -345,14 +341,14 @@ export default function App() {
                   target="_blank"
                   rel="noopener noreferrer"
                   data-slot="card"
-                  className="relative border border-white/[0.03] from-[#1a1a1a] to-[#131313] bg-gradient-to-br shadow-[inset_0_1px_1px_rgba(255,255,255,0.1),_0_1px_3px_rgba(0,0,0,0.3),_inset_0_-1px_1px_rgba(0,0,0,0.2)] transition-all duration-500 before:absolute before:inset-0 before:-z-10 before:rounded-2xl before:bg-gradient-to-b before:from-white/[0.02] before:to-transparent before:opacity-0 before:transition-opacity after:absolute after:inset-0 after:z-[-1] after:rounded-2xl after:bg-gradient-to-t after:from-black/30 after:to-transparent flex w-full items-center justify-between rounded-xl px-4 py-3 hover:border-white/10 hover:before:opacity-100 hover:shadow-[inset_0_1px_1px_rgba(255,255,255,0.15),_0_6px_20px_rgba(0,0,0,0.6)] cursor-pointer"
+                  className="relative border border-white/[0.03] from-[#1a1a1a] to-[#131313] bg-gradient-to-br shadow-[inset_0_1px_1px_rgba(255,255,255,0.1),_0_1px_3px_rgba(0,0,0,0.3),_inset_0_-1px_1px_rgba(0,0,0,0.2)] transition-all duration-500 before:absolute before:inset-0 before:-z-10 before:rounded-2xl before:bg-gradient-to-b before:from-white/[0.02] before:to-transparent before:opacity-0 before:transition-opacity after:absolute after:inset-0 after:z-[-1] after:rounded-2xl after:bg-gradient-to-t after:from-black/30 after:to-transparent flex w-full items-center justify-between rounded-xl px-3.5 py-2.5 hover:border-white/10 hover:before:opacity-100 hover:shadow-[inset_0_1px_1px_rgba(255,255,255,0.15),_0_6px_20px_rgba(0,0,0,0.6)] cursor-pointer"
                 >
                   <div className="flex items-center gap-2">
-                    <span className="text-sm font-medium text-white/90">Discord</span>
-                    <span className="text-xs text-white/40">(@{PROFILE_DATA.discord.username})</span>
+                    <span className="text-xs sm:text-[13px] font-medium text-white/90">Discord</span>
+                    <span className="text-[11px] text-white/40">(@{PROFILE_DATA.discord.username})</span>
                   </div>
 
-                  <div className="flex items-center gap-2">
+                  <div className="flex items-center gap-1.5">
                     <button
                       type="button"
                       title="Copy Discord Tag"
@@ -360,9 +356,9 @@ export default function App() {
                       className="p-1 rounded text-white/40 hover:text-white/80 transition-colors cursor-pointer"
                     >
                       {copiedText === 'discord' ? (
-                        <Check className="size-3.5 text-emerald-400" />
+                        <Check className="size-3 text-emerald-400" />
                       ) : (
-                        <Copy className="size-3.5" />
+                        <Copy className="size-3" />
                       )}
                     </button>
 
@@ -372,7 +368,7 @@ export default function App() {
                       strokeWidth="0"
                       role="img"
                       viewBox="0 0 24 24"
-                      className="text-primary-300 ml-1 inline size-4 drop-shadow-[0_0_6px_rgba(129,140,248,0.5)]"
+                      className="text-primary-300 ml-1 inline size-3.5 drop-shadow-[0_0_6px_rgba(129,140,248,0.5)]"
                       height="1em"
                       width="1em"
                       xmlns="http://www.w3.org/2000/svg"
@@ -385,8 +381,8 @@ export default function App() {
 
               {/* 2. Roblox Button */}
               <motion.div
-                whileHover={{ scale: 1.015, y: -2 }}
-                whileTap={{ scale: 0.985 }}
+                whileHover={{ scale: 1.012, y: -1 }}
+                whileTap={{ scale: 0.988 }}
                 transition={{ type: 'spring', stiffness: 400, damping: 25 }}
                 className="group relative"
               >
@@ -396,23 +392,23 @@ export default function App() {
                   target="_blank"
                   rel="noopener noreferrer"
                   data-slot="card"
-                  className="relative border border-white/[0.03] from-[#1a1a1a] to-[#131313] bg-gradient-to-br shadow-[inset_0_1px_1px_rgba(255,255,255,0.1),_0_1px_3px_rgba(0,0,0,0.3),_inset_0_-1px_1px_rgba(0,0,0,0.2)] transition-all duration-500 before:absolute before:inset-0 before:-z-10 before:rounded-2xl before:bg-gradient-to-b before:from-white/[0.02] before:to-transparent before:opacity-0 before:transition-opacity after:absolute after:inset-0 after:z-[-1] after:rounded-2xl after:bg-gradient-to-t after:from-black/30 after:to-transparent flex w-full items-center justify-between rounded-xl px-4 py-3 hover:border-white/10 hover:before:opacity-100 hover:shadow-[inset_0_1px_1px_rgba(255,255,255,0.15),_0_6px_20px_rgba(0,0,0,0.6)] cursor-pointer"
+                  className="relative border border-white/[0.03] from-[#1a1a1a] to-[#131313] bg-gradient-to-br shadow-[inset_0_1px_1px_rgba(255,255,255,0.1),_0_1px_3px_rgba(0,0,0,0.3),_inset_0_-1px_1px_rgba(0,0,0,0.2)] transition-all duration-500 before:absolute before:inset-0 before:-z-10 before:rounded-2xl before:bg-gradient-to-b before:from-white/[0.02] before:to-transparent before:opacity-0 before:transition-opacity after:absolute after:inset-0 after:z-[-1] after:rounded-2xl after:bg-gradient-to-t after:from-black/30 after:to-transparent flex w-full items-center justify-between rounded-xl px-3.5 py-2.5 hover:border-white/10 hover:before:opacity-100 hover:shadow-[inset_0_1px_1px_rgba(255,255,255,0.15),_0_6px_20px_rgba(0,0,0,0.6)] cursor-pointer"
                 >
-                  <div className="flex items-center gap-2.5">
-                    <span className="text-sm font-medium text-white/90">Roblox</span>
-                    <span className="text-xs text-white/40">
+                  <div className="flex items-center gap-2">
+                    <span className="text-xs sm:text-[13px] font-medium text-white/90">Roblox</span>
+                    <span className="text-[11px] text-white/40">
                       ({PROFILE_DATA.roblox.displayName} / @{PROFILE_DATA.roblox.username})
                     </span>
                   </div>
 
-                  <div className="flex items-center gap-2">
-                    <ExternalLink className="size-3.5 text-white/30 group-hover:text-white/70 transition-colors" />
+                  <div className="flex items-center gap-1.5">
+                    <ExternalLink className="size-3 text-white/30 group-hover:text-white/70 transition-colors" />
                     <svg
                       stroke="currentColor"
                       fill="currentColor"
                       strokeWidth="0"
                       viewBox="0 0 24 24"
-                      className="text-white/80 ml-1 inline size-4"
+                      className="text-white/80 ml-0.5 inline size-3.5"
                       height="1em"
                       width="1em"
                       xmlns="http://www.w3.org/2000/svg"
@@ -426,8 +422,8 @@ export default function App() {
               {/* 3. iOS Certificates Store Button */}
               {PROFILE_DATA.iosCert && (
                 <motion.div
-                  whileHover={{ scale: 1.015, y: -2 }}
-                  whileTap={{ scale: 0.985 }}
+                  whileHover={{ scale: 1.012, y: -1 }}
+                  whileTap={{ scale: 0.988 }}
                   transition={{ type: 'spring', stiffness: 400, damping: 25 }}
                   className="group relative"
                 >
@@ -437,20 +433,20 @@ export default function App() {
                     target="_blank"
                     rel="noopener noreferrer"
                     data-slot="card"
-                    className="relative border border-white/[0.03] from-[#1a1a1a] to-[#131313] bg-gradient-to-br shadow-[inset_0_1px_1px_rgba(255,255,255,0.1),_0_1px_3px_rgba(0,0,0,0.3),_inset_0_-1px_1px_rgba(0,0,0,0.2)] transition-all duration-500 before:absolute before:inset-0 before:-z-10 before:rounded-2xl before:bg-gradient-to-b before:from-white/[0.02] before:to-transparent before:opacity-0 before:transition-opacity after:absolute after:inset-0 after:z-[-1] after:rounded-2xl after:bg-gradient-to-t after:from-black/30 after:to-transparent flex w-full items-center justify-between rounded-xl px-4 py-3 hover:border-white/10 hover:before:opacity-100 hover:shadow-[inset_0_1px_1px_rgba(255,255,255,0.15),_0_6px_20px_rgba(0,0,0,0.6)] cursor-pointer"
+                    className="relative border border-white/[0.03] from-[#1a1a1a] to-[#131313] bg-gradient-to-br shadow-[inset_0_1px_1px_rgba(255,255,255,0.1),_0_1px_3px_rgba(0,0,0,0.3),_inset_0_-1px_1px_rgba(0,0,0,0.2)] transition-all duration-500 before:absolute before:inset-0 before:-z-10 before:rounded-2xl before:bg-gradient-to-b before:from-white/[0.02] before:to-transparent before:opacity-0 before:transition-opacity after:absolute after:inset-0 after:z-[-1] after:rounded-2xl after:bg-gradient-to-t after:from-black/30 after:to-transparent flex w-full items-center justify-between rounded-xl px-3.5 py-2.5 hover:border-white/10 hover:before:opacity-100 hover:shadow-[inset_0_1px_1px_rgba(255,255,255,0.15),_0_6px_20px_rgba(0,0,0,0.6)] cursor-pointer"
                   >
-                    <div className="flex items-center gap-2.5">
-                      <span className="text-sm font-medium text-white/90">iOS Certificates</span>
-                      <span className="rounded-md bg-white/[0.06] border border-white/10 px-2 py-0.5 text-[10px] font-mono text-zinc-300 font-semibold shadow-xs">
+                    <div className="flex items-center gap-2">
+                      <span className="text-xs sm:text-[13px] font-medium text-white/90">iOS Certificates</span>
+                      <span className="rounded-md bg-white/[0.06] border border-white/10 px-1.5 py-0.5 text-[9px] font-mono text-zinc-300 font-semibold shadow-xs">
                         From $2
                       </span>
                     </div>
 
-                    <div className="flex items-center gap-2">
-                      <span className="text-[11px] text-white/40 hidden sm:inline">ร้านขาย Certificate</span>
-                      <ExternalLink className="size-3.5 text-white/30 group-hover:text-white/70 transition-colors" />
+                    <div className="flex items-center gap-1.5">
+                      <span className="text-[10px] text-white/40 hidden sm:inline">ร้านขาย Cert</span>
+                      <ExternalLink className="size-3 text-white/30 group-hover:text-white/70 transition-colors" />
                       <svg
-                        className="text-white/80 ml-0.5 inline size-4 fill-current"
+                        className="text-white/80 ml-0.5 inline size-3.5 fill-current"
                         viewBox="0 0 170 170"
                       >
                         <path d="M150.37 130.25c-2.45 5.66-5.35 10.87-8.71 15.66-4.58 6.53-8.33 11.05-11.22 13.56-4.48 4.12-9.28 6.23-14.42 6.35-3.69 0-8.14-1.05-13.32-3.18-5.19-2.12-9.97-3.17-14.34-3.17-4.58 0-9.49 1.05-14.75 3.17-5.26 2.13-9.5 3.24-12.74 3.35-4.35.13-9.16-1.9-14.42-6.08-3.7-3.04-7.69-7.85-11.96-14.42-7.23-11.19-12.82-24.15-16.78-38.86-3.95-14.71-5.93-28.43-5.93-41.16 0-14.99 3.65-27.42 10.95-37.3 7.3-9.87 16.63-14.93 28.01-15.17 4.79 0 10.12 1.37 15.99 4.1 5.87 2.74 9.69 4.17 11.45 4.31 1.76-.14 5.66-1.57 11.7-4.31 6.04-2.73 11.22-3.99 15.53-3.78 12.39.73 22.37 5.34 29.93 13.82-10.85 6.64-16.14 15.82-15.86 27.54.28 9.53 4.07 17.51 11.36 23.94 7.29 6.43 15.82 10.01 25.59 10.74-2.22 6.77-5.06 14.15-8.52 22.13zm-27.8-106.91c0 6.64-2.45 13.01-7.36 18.11-4.91 5.1-10.92 8.28-18.04 7.55-.14-1.04-.21-1.98-.21-2.82 0-6.64 2.58-13.06 7.74-18.26 5.16-5.2 11.35-8.31 18.57-7.33.14.95.21 1.87.21 2.75z" />
@@ -474,7 +470,7 @@ export default function App() {
               initial={{ opacity: 0 }}
               animate={isEntered ? { opacity: 1 } : { opacity: 0 }}
               transition={{ delay: 0.5 }}
-              className="mt-6 flex items-center justify-between text-xs text-white/35 font-mono px-1"
+              className="mt-4 flex items-center justify-between text-xs text-white/35 font-mono px-1"
               style={{ transform: 'translateZ(10px)' }}
             >
               <div

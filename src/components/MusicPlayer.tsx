@@ -74,7 +74,7 @@ export function MusicPlayer({ track, isPlaying, onTogglePlay, audioRef }: MusicP
       data-slot="card"
       whileHover={{ scale: 1.01 }}
       transition={{ type: 'spring', stiffness: 400, damping: 25 }}
-      className="relative border border-white/[0.06] from-[#18181a] to-[#101012] bg-gradient-to-br shadow-[inset_0_1px_1px_rgba(255,255,255,0.08),_0_8px_20px_rgba(0,0,0,0.5)] transition-all duration-500 flex flex-col w-full rounded-2xl p-3.5 overflow-hidden group"
+      className="relative border border-white/[0.06] from-[#18181a] to-[#101012] bg-gradient-to-br shadow-[inset_0_1px_1px_rgba(255,255,255,0.08),_0_8px_20px_rgba(0,0,0,0.5)] transition-all duration-500 flex flex-col w-full rounded-xl p-3 overflow-hidden group"
     >
       <audio
         ref={audioRef}
@@ -94,12 +94,12 @@ export function MusicPlayer({ track, isPlaying, onTogglePlay, audioRef }: MusicP
       )}
 
       {/* Top Fallen Angels Gothic Lace Accent Header */}
-      <div className="flex items-center justify-between pb-2 mb-2.5 border-b border-white/[0.05] text-[10px] font-mono tracking-widest text-white/40">
+      <div className="flex items-center justify-between pb-1.5 mb-2 border-b border-white/[0.05] text-[9px] font-mono tracking-widest text-white/40">
         <span className="flex items-center gap-1.5">
           <span className="text-white/70 text-xs font-serif">♰</span>
           <span>FALLEN ANGEL</span>
         </span>
-        <span className="flex items-center gap-1 text-[9px] text-white/50 tracking-wider">
+        <span className="flex items-center gap-1 text-[8.5px] text-white/50 tracking-wider">
           <span>໒꒱</span>
           <span>{isPlaying ? 'PLAYING' : 'PAUSED'}</span>
           <span>໒꒱</span>
@@ -107,23 +107,22 @@ export function MusicPlayer({ track, isPlaying, onTogglePlay, audioRef }: MusicP
       </div>
 
       {/* Main Player Row */}
-      <div className="flex items-center gap-3 relative z-10">
+      <div className="flex items-center gap-2.5 relative z-10">
         {/* Aesthetic Gothic Cross Vinyl Disc */}
         <div
           onClick={onTogglePlay}
-          className="relative size-14 flex-shrink-0 cursor-pointer group/disc select-none"
+          className="relative size-12 flex-shrink-0 cursor-pointer group/disc select-none"
           title={isPlaying ? 'Click to Pause' : 'Click to Play'}
         >
           {/* Spinning Vinyl Record */}
           <div
-            className={`relative size-14 rounded-full bg-[#08080a] border border-white/15 shadow-[0_4px_14px_rgba(0,0,0,0.9)] flex items-center justify-center transition-transform duration-300 group-hover/disc:scale-105 ${
+            className={`relative size-12 rounded-full bg-[#08080a] border border-white/15 shadow-[0_4px_14px_rgba(0,0,0,0.9)] flex items-center justify-center transition-transform duration-300 group-hover/disc:scale-105 ${
               isPlaying ? 'animate-[spin_4s_linear_infinite]' : ''
             }`}
           >
             {/* Concentric Vinyl Microgrooves */}
             <div className="absolute inset-1 rounded-full border border-white/[0.07]" />
             <div className="absolute inset-2 rounded-full border border-white/[0.04]" />
-            <div className="absolute inset-3 rounded-full border border-white/[0.06]" />
 
             {/* Specular Radial Light Reflection Sheen */}
             <div
@@ -135,11 +134,11 @@ export function MusicPlayer({ track, isPlaying, onTogglePlay, audioRef }: MusicP
             />
 
             {/* Center Gothic Cross Emblem Label */}
-            <div className="relative size-7 rounded-full bg-[#121215] border border-white/20 shadow-inner flex items-center justify-center overflow-hidden">
+            <div className="relative size-6 rounded-full bg-[#121215] border border-white/20 shadow-inner flex items-center justify-center overflow-hidden">
               {/* Gothic Ornamental Cross SVG (Inspired by user references) */}
               <svg
                 viewBox="0 0 24 24"
-                className="size-4.5 text-white/90 drop-shadow-[0_0_3px_rgba(255,255,255,0.6)]"
+                className="size-3.5 text-white/90 drop-shadow-[0_0_3px_rgba(255,255,255,0.6)]"
                 fill="currentColor"
               >
                 {/* Detailed Gothic Cross Silhouette */}
@@ -149,15 +148,15 @@ export function MusicPlayer({ track, isPlaying, onTogglePlay, audioRef }: MusicP
             </div>
 
             {/* Center Spindle Hole */}
-            <div className="absolute size-1.5 rounded-full bg-black border border-white/60" />
+            <div className="absolute size-1 rounded-full bg-black border border-white/60" />
           </div>
 
           {/* Hover Play/Pause Overlay Icon */}
           <div className="absolute inset-0 rounded-full bg-black/40 opacity-0 group-hover/disc:opacity-100 transition-opacity flex items-center justify-center">
             {isPlaying ? (
-              <Pause className="size-4 text-white fill-current drop-shadow-md" />
+              <Pause className="size-3.5 text-white fill-current drop-shadow-md" />
             ) : (
-              <Play className="size-4 text-white fill-current translate-x-0.5 drop-shadow-md" />
+              <Play className="size-3.5 text-white fill-current translate-x-0.5 drop-shadow-md" />
             )}
           </div>
         </div>
@@ -173,7 +172,7 @@ export function MusicPlayer({ track, isPlaying, onTogglePlay, audioRef }: MusicP
             </div>
 
             {/* Dynamic Minimalist Audio Visualizer Bars */}
-            <div className="flex items-end gap-[2px] h-3 px-0.5">
+            <div className="flex items-end gap-[2px] h-2.5 px-0.5">
               {audioFreqs.map((height, idx) => (
                 <motion.span
                   key={idx}
@@ -189,7 +188,7 @@ export function MusicPlayer({ track, isPlaying, onTogglePlay, audioRef }: MusicP
           </div>
 
           {/* Artist & Alt Vibe Subtext */}
-          <div className="flex items-center justify-between text-[11px] text-white/45 mt-0.5">
+          <div className="flex items-center justify-between text-[10.5px] text-white/45 mt-0.5">
             <span className="truncate">{track.artist}</span>
             <span className="font-mono text-[9px] text-white/35 tabular-nums">4:48</span>
           </div>
@@ -197,7 +196,7 @@ export function MusicPlayer({ track, isPlaying, onTogglePlay, audioRef }: MusicP
           {/* Minimalist Progress Bar with Scrub Seek */}
           <div
             onClick={handleSeek}
-            className="group/seek relative mt-2 h-1 w-full cursor-pointer rounded-full bg-white/10 overflow-hidden"
+            className="group/seek relative mt-1.5 h-1 w-full cursor-pointer rounded-full bg-white/10 overflow-hidden"
           >
             <motion.div
               className="h-full rounded-full bg-white transition-all duration-100 shadow-[0_0_6px_rgba(255,255,255,0.7)]"
@@ -206,7 +205,7 @@ export function MusicPlayer({ track, isPlaying, onTogglePlay, audioRef }: MusicP
           </div>
 
           {/* Time Counters */}
-          <div className="mt-1 flex items-center justify-between text-[9px] text-white/35 tabular-nums font-mono">
+          <div className="mt-0.5 flex items-center justify-between text-[8.5px] text-white/35 tabular-nums font-mono">
             <span>{formatTime(currentTime)}</span>
             <span>{formatTime(duration)}</span>
           </div>
@@ -219,12 +218,12 @@ export function MusicPlayer({ track, isPlaying, onTogglePlay, audioRef }: MusicP
             id="music-play-btn"
             onClick={onTogglePlay}
             aria-label={isPlaying ? 'Pause' : 'Play'}
-            className="flex size-7 items-center justify-center rounded-lg border border-white/10 bg-white/5 text-white/90 transition-all hover:border-white/25 hover:bg-white/10 hover:text-white cursor-pointer"
+            className="flex size-6.5 items-center justify-center rounded-lg border border-white/10 bg-white/5 text-white/90 transition-all hover:border-white/25 hover:bg-white/10 hover:text-white cursor-pointer"
           >
             {isPlaying ? (
-              <Pause className="size-3 fill-current" />
+              <Pause className="size-2.5 fill-current" />
             ) : (
-              <Play className="size-3 fill-current translate-x-0.5" />
+              <Play className="size-2.5 fill-current translate-x-0.5" />
             )}
           </button>
 
@@ -233,20 +232,20 @@ export function MusicPlayer({ track, isPlaying, onTogglePlay, audioRef }: MusicP
             id="music-mute-btn"
             onClick={toggleMute}
             aria-label={isMuted ? 'Unmute' : 'Mute'}
-            className="flex size-7 items-center justify-center rounded-lg text-white/35 transition-colors hover:text-white/80 cursor-pointer"
+            className="flex size-6.5 items-center justify-center rounded-lg text-white/35 transition-colors hover:text-white/80 cursor-pointer"
           >
             {isMuted ? (
-              <VolumeX className="size-3 text-red-400" />
+              <VolumeX className="size-2.5 text-red-400" />
             ) : (
-              <Volume2 className="size-3" />
+              <Volume2 className="size-2.5" />
             )}
           </button>
         </div>
       </div>
 
       {/* Delicate Gothic Scalloped Lace / Cross Pattern Trim at Bottom */}
-      <div className="mt-2.5 pt-1.5 border-t border-white/[0.04] flex items-center justify-center gap-2 text-white/20 select-none overflow-hidden">
-        <span className="text-[10px] tracking-[0.3em]">♰ ♰ ♰ ໒꒱ ♰ ♰ ♰</span>
+      <div className="mt-2 pt-1 border-t border-white/[0.04] flex items-center justify-center gap-2 text-white/20 select-none overflow-hidden">
+        <span className="text-[9px] tracking-[0.3em]">♰ ♰ ♰ ໒꒱ ♰ ♰ ♰</span>
       </div>
     </motion.div>
   );
